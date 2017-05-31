@@ -12,9 +12,8 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	var oppType = req.body.result.parameters.opp-type;
-	var speech = "This is working -- " + oppType;
-
+	// var oppType = req.body.result.parameters.opp-type;
+	var speech = "This is working.";
 	return res.json({
 		speech: speech,
 		displayText: speech,
