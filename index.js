@@ -11,16 +11,24 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	var speech = "";
+	var speech = "This is working.";
+
+
+
+	// if (req.body.result && req.body.result.parameters && req.body.result.parameters.echoText) {
+	// 	speech = req.body.result.parameters.oppType;
+	// } else {
+	// 	speech = "Seems like some problem. Speak again.";
+	// }
+
+
 	
-	if (parsedBody.result && parsedBody.result.parameters) {
-		speech = req.body.result.parameters.oppType;
-	} else {
-		speech = "Something went wrong.";
-	}
-	for(var attributename in req) {
-    	speech += attributename + ": " + req[attributename] + "\n";
-	}
+	// if (req.result && req.result.parameters) {
+	// 	speech = req.body.result.parameters.oppType;
+	// } else {
+	// 	speech = "Something went wrong.";
+	// }
+
     return res.json({
         speech: speech,
         displayText: speech,
