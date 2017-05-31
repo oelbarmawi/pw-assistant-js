@@ -1,7 +1,7 @@
 {
-  "name": "Test for PrescribeWellness Webhook",
+  "name": "PW Test JavaScript",
   "description": "Testing to see if webhook works for our data",
-  "repository": "https://github.com/heroku/pw-assistant-js",
+  "repository": "https://github.com/oelbarmawi/pw-assistant-js",
   "logo": "public/icon.png",
   "keywords": ["PrescribeWellness", "api.ai", "heroku", "Google Home"]
 }
