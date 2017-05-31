@@ -17,7 +17,7 @@ restService.post('/webhook', function(req, res) {
 	}
 
 	if (req.result.parameters) {
-		oppType = req.body.result.parameters.oppType + "2";
+		oppType = req.result.parameters.oppType + "2";
 	}
 
 	var speech = "This is working -- " + oppType;
