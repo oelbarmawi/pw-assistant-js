@@ -24,7 +24,7 @@ restService.post('/webhook', function(req, res) {
 
 		case "FindClosestPharmacy":
 			var zip = req.body.result.parameters.zipCode;
-			speech = "The closest pharmacy to " + zip " is...";
+			speech = "The closest pharmacy to " + zip + " is...";
 			break;
 	}
 
