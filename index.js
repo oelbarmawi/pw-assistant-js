@@ -11,7 +11,7 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	var speech = "This is working.";
+	var speech = JSON.stringify(req);
 
 	// if (req) {
 	// 	speech += "1";
@@ -26,18 +26,18 @@ restService.post('/webhook', function(req, res) {
 	// 	speech += "4";
 	// }
 
-	if (req.body) {
-		speech += "a";
-	}
-	if (req.body.result) {
-		speech += "b";
-	}
-	if (req.body.result.parameters) {
-		speech += "c";
-	} 
-	if (req.body.result.parameters.oppType) {
-		speech += "d";
-	}
+	// if (req.body) {
+	// 	speech += "a";
+	// }
+	// if (req.body.result) {
+	// 	speech += "b";
+	// }
+	// if (req.body.result.parameters) {
+	// 	speech += "c";
+	// } 
+	// if (req.body.result.parameters.oppType) {
+	// 	speech += "d";
+	// }
 
 
 	
