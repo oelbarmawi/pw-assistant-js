@@ -2,7 +2,6 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const restService = express();
 
 restService.use(bodyParser.urlencoded({
@@ -12,8 +11,11 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	// var oppType = req.body.result.parameters.opp-type;
-	var speech = "This is working.";
+	var oppType = "";
+	if (req.body.result && req.body.result.parameters) {
+		oppType = req.body.result.parameters.opp-type;
+	}
+	var speech = "This is working -- " + oppType;
 	return res.json({
 		speech: speech,
 		displayText: speech,
