@@ -12,7 +12,7 @@ restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
 	var oppType = "";
-	if (req.body.result && req.body.result.parameters) {
+	if (true) {
 		oppType = req.body.result.parameters.opp-type;
 	}
 	var speech = "This is working -- " + oppType;
