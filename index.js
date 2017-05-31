@@ -13,13 +13,31 @@ restService.use(bodyParser.json());
 restService.post('/webhook', function(req, res) {
 	var speech = "This is working.";
 
+	if (req) {
+		speech += "1";
+	}
+	if (req.result) {
+		speech += "2";
+	}
+	if (req.result.parameters) {
+		speech += "3";
+	} 
+	if (req.result.parameters.oppType) {
+		speech += "4";
+	}
 
-
-	// if (req.body.result && req.body.result.parameters && req.body.result.parameters.echoText) {
-	// 	speech = req.body.result.parameters.oppType;
-	// } else {
-	// 	speech = "Seems like some problem. Speak again.";
-	// }
+	if (req.body) {
+		speech += "a";
+	}
+	if (req.body.result) {
+		speech += "b";
+	}
+	if (req.body.result.parameters) {
+		speech += "c";
+	} 
+	if (req.body.result.parameters.oppType) {
+		speech += "d";
+	}
 
 
 	
