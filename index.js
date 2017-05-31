@@ -12,14 +12,17 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	var speech = "The following people qualify for ";
-    speech += req.body.result && req.body.result.parameters && req.body.result.parameters.oppType ? req.body.result.parameters.oppType : "Seems like some problem. Speak again."
-    speech += ": Bobby, Jonny, Terry, Jerry";
-    return res.json({
+	speech = "Something went wrong, can you repeat the question?";
+	if (req.body.result.action == "TodaysOpportunities.Direct") {
+		var speech = "The following people qualify for ";
+	    speech += req.body.result && req.body.result.parameters && req.body.result.parameters.oppType ? req.body.result.parameters.oppType : "Seems like some problem. Speak again."
+	    speech += ": Bobby, Jonny, Terry, Jerry";
+	}
+	return res.json({
         speech: speech,
         displayText: speech,
         source: 'pw-assistant-js'
-    });
+	});
 });
 
 
