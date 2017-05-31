@@ -11,7 +11,12 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.oppType ? req.body.result.parameters.oppType : "Seems like some problem. Speak again."
+	var speech = "";
+	if (req.result && req.result.parameters) {
+		speech = req.body.result.parameters.oppType;
+	} else {
+		speech = "Something went wrong.";
+	}
     return res.json({
         speech: speech,
         displayText: speech,
