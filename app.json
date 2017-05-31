@@ -2,6 +2,5 @@
   "name": "PW Test JavaScript",
   "description": "Testing to see if webhook works for our data",
   "repository": "https://github.com/oelbarmawi/pw-assistant-js",
-  "logo": "icon.png",
   "keywords": ["PrescribeWellness", "api.ai", "heroku", "Google Home"]
 }
