@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const restService = express();
 
 restService.use(bodyParser.urlencoded({
@@ -11,42 +12,7 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
-	var speech = JSON.stringify(req);
-
-	// if (req) {
-	// 	speech += "1";
-	// }
-	// if (req.result) {
-	// 	speech += "2";
-	// }
-	// if (req.result.parameters) {
-	// 	speech += "3";
-	// } 
-	// if (req.result.parameters.oppType) {
-	// 	speech += "4";
-	// }
-
-	// if (req.body) {
-	// 	speech += "a";
-	// }
-	// if (req.body.result) {
-	// 	speech += "b";
-	// }
-	// if (req.body.result.parameters) {
-	// 	speech += "c";
-	// } 
-	// if (req.body.result.parameters.oppType) {
-	// 	speech += "d";
-	// }
-
-
-	
-	// if (req.result && req.result.parameters) {
-	// 	speech = req.body.result.parameters.oppType;
-	// } else {
-	// 	speech = "Something went wrong.";
-	// }
-
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.oppType ? req.body.result.parameters.oppType : "Seems like some problem. Speak again."
     return res.json({
         speech: speech,
         displayText: speech,
@@ -54,6 +20,63 @@ restService.post('/webhook', function(req, res) {
     });
 });
 
+restService.post('/slack-test', function(req, res) {
+
+    var slack_message = {
+        "text": "Details of JIRA board for Browse and Commerce",
+        "attachments": [{
+            "title": "JIRA Board",
+            "title_link": "http://www.google.com",
+            "color": "#36a64f",
+
+            "fields": [{
+                "title": "Epic Count",
+                "value": "50",
+                "short": "false"
+            }, {
+                "title": "Story Count",
+                "value": "40",
+                "short": "false"
+            }],
+
+            "thumb_url": "https://stiltsoft.com/blog/wp-content/uploads/2016/01/5.jira_.png"
+        }, {
+            "title": "Story status count",
+            "title_link": "http://www.google.com",
+            "color": "#f49e42",
+
+            "fields": [{
+                "title": "Not started",
+                "value": "50",
+                "short": "false"
+            }, {
+                "title": "Development",
+                "value": "40",
+                "short": "false"
+            }, {
+                "title": "Development",
+                "value": "40",
+                "short": "false"
+            }, {
+                "title": "Development",
+                "value": "40",
+                "short": "false"
+            }]
+        }]
+    }
+    return res.json({
+        speech: "speech",
+        displayText: "speech",
+        source: 'webhook-echo-sample',
+        data: {
+            "slack": slack_message
+        }
+    });
+});
+
+
+
+
 restService.listen((process.env.PORT || 8000), function() {
-    console.log("Server up and running.");
+    console.log("Server up and listening");
 });
