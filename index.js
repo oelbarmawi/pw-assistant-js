@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+var $ = require('jquery');
 
 const restService = express();
 
@@ -24,20 +25,21 @@ restService.post('/webhook', function(req, res) {
 
 		case "FindClosestPharmacy.Address":
 			// var zip = req.body.result.parameters.zipCode;
-			var address = req.body.result.parameters.userAddress;
-			var encodedAddress = encodeURIComponent(userAddress);
-			var ourRequest = new XMLHttpRequest();
-			ourRequest.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false');
-			ourRequest.onload = function() {
-				var place = JSON.parse(ourRequest.responseText);
-				var lat = place.results[0].geometry.location.lat;
-				var lng = place.results[0].geometry.location.lat;
-				var formatted_address = place.results[0].formatted_address;
-				speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address, " + formatted_address;
-			};
-			ourRequest.send();
+			// var address = req.body.result.parameters.userAddress;
+			// var encodedAddress = encodeURIComponent(userAddress);
+			// var ourRequest = new XMLHttpRequest();
+			// ourRequest.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false');
+			// ourRequest.onload = function() {
+			// 	var place = JSON.parse(ourRequest.responseText);
+			// 	var lat = place.results[0].geometry.location.lat;
+			// 	var lng = place.results[0].geometry.location.lat;
+			// 	var formatted_address = place.results[0].formatted_address;
+			// 	speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address, " + formatted_address;
+			// };
+			// ourRequest.send();
 			
 			// speech = "The closest pharmacy to " + zip + " is...";
+			speech = "It's working.";
 			break;
 	}
 
