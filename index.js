@@ -29,11 +29,12 @@ restService.post('/webhook', function(req, res) {
 			var address = req.body.result.parameters.userAddress;
 			var encodedAddress = encodeURIComponent(userAddress);
 			var lat, lng, formatted_address;
+			speech = "It's working.";
 			nodeGetJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false', function(error, response) {
 				if (response.result) {
 					speech = "we have results";
 				}
-			});
+			})
 			// $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false', function(place) {
    //  			//data is the JSON string
 			// });
@@ -49,7 +50,7 @@ restService.post('/webhook', function(req, res) {
 			// ourRequest.send();
 			
 			// speech = "The closest pharmacy to " + zip + " is...";
-			speech = "It's working.";
+			
 			break;
 	}
 
