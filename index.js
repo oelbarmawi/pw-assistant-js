@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var $ = require('jquery');
 
-
 const restService = express();
 
 restService.use(bodyParser.urlencoded({
@@ -26,7 +25,7 @@ restService.post('/webhook', function(req, res) {
 
 		case "FindClosestPharmacy.Address":
 			var address = req.body.result.parameters.userAddress;
-			var encodedAddress = encodeURIComponent(userAddress);
+			var encodedAddress = encodeURIComponent(address);
 			// var lat, lng, formatted_address;
 			speech = "It's working.";
 			// var showStb = function(speech) {
