@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var $ = require('jquery');
+var nodeGetJSON = require('get-json');
 
 const restService = express();
 
@@ -24,9 +25,13 @@ restService.post('/webhook', function(req, res) {
 		    break;
 
 		case "FindClosestPharmacy.Address":
-			// var zip = req.body.result.parameters.zipCode;
+			// // var zip = req.body.result.parameters.zipCode;
 			// var address = req.body.result.parameters.userAddress;
 			// var encodedAddress = encodeURIComponent(userAddress);
+			// var lat, lng, formatted_address;
+			// $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false', function(place) {
+   //  			//data is the JSON string
+			// });
 			// var ourRequest = new XMLHttpRequest();
 			// ourRequest.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false');
 			// ourRequest.onload = function() {
