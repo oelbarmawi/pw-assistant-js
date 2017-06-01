@@ -28,17 +28,15 @@ restService.post('/webhook', function(req, res) {
 			var encodedAddress = encodeURIComponent(userAddress);
 			var ourRequest = new XMLHttpRequest();
 			ourRequest.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false');
-			// ourRequest.onload = function() {
-			var place = JSON.parse(ourRequest.responseText);
-			var lat = place.results[0].geometry.location.lat;
-			var lng = place.results[0].geometry.location.lat;
-			var formatted_address = place.results[0].formatted_address;
+			ourRequest.onload = function() {
+				var place = JSON.parse(ourRequest.responseText);
+				var lat = place.results[0].geometry.location.lat;
+				var lng = place.results[0].geometry.location.lat;
+				var formatted_address = place.results[0].formatted_address;
+				speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address, " + formatted_address;
+			};
+			ourRequest.send();
 			
-			// console.log(formatted_address);
-			// console.log("lat: " + lat + ", lng: " + lng);
-			// };
-			// ourRequest.send();
-			speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address," + formatted_address;
 			// speech = "The closest pharmacy to " + zip + " is...";
 			break;
 	}
