@@ -30,11 +30,14 @@ restService.post('/webhook', function(req, res) {
 			var encodedAddress = encodeURIComponent(userAddress);
 			var lat, lng, formatted_address;
 			speech = "It's working.";
-			nodeGetJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false', function(error, response) {
-				if (response.result) {
-					speech = "we have results";
-				}
-			})
+			var showStb = function(speech) {
+			    var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
+			    $.get(url, '', function(data){
+			            var place = JSON.parse(data);
+			            return place.results[0].geometry.location.lat;
+			    }, 'text');
+			};
+			speech = showStb(speech);
 			// $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false', function(place) {
    //  			//data is the JSON string
 			// });
