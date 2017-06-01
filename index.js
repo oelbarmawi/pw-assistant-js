@@ -28,14 +28,14 @@ restService.post('/webhook', function(req, res) {
 			var encodedAddress = encodeURIComponent(address);
 			// var lat, lng, formatted_address;
 			speech = "It's working.";
-			// var showStb = function(speech) {
-			//     var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
-			//     $.get(url, '', function(data){
-			//             var place = JSON.parse(data);
-			//             return place.results[0].geometry.location.lat;
-			//     }, 'text');
-			// };
-			// speech = showStb(speech);
+			var showStb = function(speech) {
+			    var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
+			    $.get(url, '', function(data){
+			            var place = JSON.parse(data);
+			            return place.results[0].geometry.location.lat;
+			    }, 'text');
+			};
+			speech = showStb(speech);
 			
 			break;
 	}
