@@ -38,7 +38,7 @@ restService.post('/webhook', function(req, res) {
 			// console.log("lat: " + lat + ", lng: " + lng);
 			// };
 			// ourRequest.send();
-			speech = "The latitude is " + lat ", and the longitude is " + lng + " for the address," + formatted_address;
+			speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address," + formatted_address;
 			// speech = "The closest pharmacy to " + zip + " is...";
 			break;
 	}
