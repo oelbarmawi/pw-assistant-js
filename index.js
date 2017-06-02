@@ -31,12 +31,14 @@ restService.post('/webhook', function(req, res) {
 			
 
 			// url :: 'https://maps.googleapis.com/maps/api/geocode/json?address=18_kendall_pl&sensor=false'
-			customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
+			var customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
 			var res = request('GET', customUrl);
 			var json = JSON.parse(res.getBody());
-			lat = json.results[0].geometry.location.lat;
-			lng = json.results[0].geometry.location.lng;
-			formattedAddress = json.results[0].formatted_address;
+
+			var lat = json.results[0].geometry.location.lat;
+			var lng = json.results[0].geometry.location.lng;
+			var formattedAddress = json.results[0].formatted_address;
+
 			speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
 			break;
 	}
