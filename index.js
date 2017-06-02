@@ -29,25 +29,28 @@ restService.post('/webhook', function(req, res) {
 			speech = "It's working.";
 
 			// url :: 'https://maps.googleapis.com/maps/api/geocode/json?address=18_kendall_pl&sensor=false'
-			// customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
-			// function getJSON(myurl) {
-			// 	request({url: myurl, method: 'GET', json: true}, function(err, res, json) {
-			// 		if (err) {
-			// 	    	throw err;
-			// 	  	} else {
-			// 	  		lat = json.results[0].geometry.location.lat;
-			// 	  		lng = json.results[0].geometry.location.lng;
-			// 	  		formattedAddress = json.results[0].formatted_address;
-			// 	  		speech = "The latitude is " + lat ", and the longitude is " + lng + " for the address " + formattedAddress ".";
-			// 	  		return res.json({
-			// 		        speech: speech,
-			// 		        displayText: speech,
-			// 		        source: 'pw-assistant-js'
-			// 			});
-			// 	  	}
-			// 	});
-			// }
-			// return getJSON(customUrl);
+			customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
+			function getJSON(myurl, callback) {
+				request({url: myurl, method: 'GET', json: true}, function(err, res, json) {
+					if (err) {
+				    	throw err;
+				  	} else {
+				  		lat = json.results[0].geometry.location.lat;
+				  		lng = json.results[0].geometry.location.lng;
+				  		formattedAddress = json.results[0].formatted_address;
+				  		speech = "The latitude is " + lat ", and the longitude is " + lng + " for the address " + formattedAddress ".";
+				  		return callback(speech);
+				  	}
+				});
+			}
+			return getJSON(customUrl, returnJSON);
+			function returnJSON(text) {
+				return res.json({
+					speech: text,
+					displayText: text,
+					source: 'pw-assistant-js'
+				});
+			}
 			break;
 	}
 
