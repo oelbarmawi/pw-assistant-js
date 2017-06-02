@@ -7,6 +7,23 @@ var request = require('sync-request');
 
 const restService = express();
 
+/*
+var address = "18 kendall pl";
+var encodedAddress = encodeURIComponent(address);
+var speech = "It's working.";
+
+var customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
+var res = request('GET', customUrl);
+var json = JSON.parse(res.getBody());
+
+var lat = json.results[0].geometry.location.lat;
+var lng = json.results[0].geometry.location.lng;
+var formattedAddress = json.results[0].formatted_address;
+
+speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
+console.log(speech);
+*/
+
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
