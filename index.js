@@ -2,13 +2,11 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-// var request = require('request');
 var request = require('sync-request');
-
 const restService = express();
 
 
-
+// Using the encoded address, pull the json from the google apis to return the speech.
 function createSpeech(encodedAddress) {
 	var speech = "It's working.";
 
@@ -23,7 +21,6 @@ function createSpeech(encodedAddress) {
 	speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
 	return speech;
 }
-
 
 
 restService.use(bodyParser.urlencoded({
@@ -45,21 +42,8 @@ restService.post('/webhook', function(req, res) {
 
 		case "FindClosestPharmacy.Address":
 			var address = req.body.result.parameters.userAddress;
-			var encodedAddress = encodeURIComponent(address);
-			speech = "It's working.";
-			
+			var encodedAddress = encodeURIComponent(address);			
 			speech = createSpeech(encodedAddress);
-
-			// url :: 'https://maps.googleapis.com/maps/api/geocode/json?address=18_kendall_pl&sensor=false'
-			// var customUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&sensor=false';
-			// var res = request('GET', customUrl);
-			// var json = JSON.parse(res.getBody());
-
-			// var lat = json.results[0].geometry.location.lat;
-			// var lng = json.results[0].geometry.location.lng;
-			// var formattedAddress = json.results[0].formatted_address;
-
-			// speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
 			break;
 	}
 
