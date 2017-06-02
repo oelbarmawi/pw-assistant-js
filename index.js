@@ -2,7 +2,8 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-var $ = require('jquery');
+var request = require('request');
+var request2 = require('sync-request');
 
 const restService = express();
 
@@ -44,6 +45,7 @@ restService.post('/webhook', function(req, res) {
 				});
 			}
 			return getJSON(customUrl, returnJSON);
+
 			function returnJSON(text) {
 				return res.json({
 					speech: text,
