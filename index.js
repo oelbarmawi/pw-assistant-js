@@ -37,7 +37,7 @@ restService.post('/webhook', function(req, res) {
 			lng = json.results[0].geometry.location.lng;
 			formattedAddress = json.results[0].formatted_address;
 			speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
-			console.log(speech);
+
 			break;
 	}
 

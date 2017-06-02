@@ -1,20 +1,8 @@
 var $ = require('jquery');
 var http = require('http');
 var https = require("https");
-var request = require('request');
-var request2 = require('sync-request');
-
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// var $ = require('jquery');
-
-// const restService = express();
-
-// restService.use(bodyParser.urlencoded({
-//     extended: true
-// }));
-
-// restService.use(bodyParser.json());
+// var request = require('request');
+var request = require('sync-request');
 
 var test = function() {
 	var speech = "Something went wrong, can you repeat the question?";
@@ -45,7 +33,7 @@ var test = function() {
 			// 	});
 			// }
 
-			var res = request2('GET', customUrl);
+			var res = request('GET', customUrl);
 			var json = JSON.parse(res.getBody());
 			lat = json.results[0].geometry.location.lat;
 			lng = json.results[0].geometry.location.lng;
