@@ -49,7 +49,9 @@ var test = function() {
 			var json = JSON.parse(res.getBody());
 			lat = json.results[0].geometry.location.lat;
 			lng = json.results[0].geometry.location.lng;
-			console.log(lat, lng);
+			formattedAddress = json.results[0].formatted_address;
+			speech = "The latitude is " + lat + ", and the longitude is " + lng + " for the address " + formattedAddress + ".";
+			console.log(speech);
 
 			break;
 	}
